@@ -23,15 +23,23 @@ class Task(models.Model):
     description = models.TextField(blank=True)
 
     status = models.CharField(
-        max_length=20, choices=Status.choices, default=Status.TODO, db_index=True
+        max_length=20, 
+        choices=Status.choices, 
+        default=Status.TODO, 
+        db_index=True
     )
 
     priority = models.IntegerField(
-        choices=Priority.choices, default=Priority.MEDIUM, db_index=True
+        choices=Priority.choices, 
+        default=Priority.MEDIUM, 
+        db_index=True
     )
 
     user = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name="tasks", db_index=True
+        User, 
+        on_delete=models.CASCADE, 
+        related_name="tasks", 
+        db_index=True
     )
 
     created_at = models.DateTimeField(auto_now_add=True, db_index=True)
