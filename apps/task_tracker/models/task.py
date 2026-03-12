@@ -9,7 +9,7 @@ User = get_user_model()
 
 
 class Task(models.Model):
-    object = TaskQuerySet.as_manager()
+    objects = TaskQuerySet.as_manager()
     class Status(models.TextChoices):
         TODO = "todo", "To Do"
         IN_PROGRESS = "in_progress", "In Progress"
