@@ -3,8 +3,6 @@ from django.db import models
 from django.utils import timezone
 
 User = get_user_model()
-
-
 class TaskQuerySet(models.QuerySet):
     def for_user(self, user: User) -> "TaskQuerySet":
         return self.filter(user=user)
@@ -23,3 +21,11 @@ class TaskQuerySet(models.QuerySet):
             deadline__isnull=False, 
             deadline__lt=timezone.now(),
             )
+    
+    def all_active_tasks(self) -> "TaskQuerySet":
+        return self.filter.exclude(status=self.model.Status.DONE)
+    
+    def get_high_priority_tasks(self)  -> "TaskQuerySet":
+        return self.filter(priority=self.model.Priority.HIGH)
+	
+

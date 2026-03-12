@@ -1,9 +1,11 @@
+from django.utils import timezone
 from datetime import datetime
 from django.db import transaction
 from django.core.exceptions import ValidationError
 from django.contrib.auth import get_user_model
 from .models import Task
 
+timezone.now()
 User = get_user_model()
 
 @transaction.atomic
@@ -13,7 +15,7 @@ def create_task(
     title: str, 
     description: str = "", 
     priority: Task.Priority = Task.Priority.MEDIUM) -> Task:
-  
+
     task = Task(
         user=user,
         title=title,
